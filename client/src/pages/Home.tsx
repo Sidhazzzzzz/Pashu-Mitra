@@ -706,7 +706,7 @@ function Logo({ onClick }: { onClick?: () => void }) {
 
 function CowCard({ cow, lang, onClick }: { cow: Cow; lang: Language; onClick: () => void }) {
   return (
-    <button className="cow-card" onClick={onClick}>
+    <button className="cow-card" onClick={onClick} aria-label={`View details for ${cow.name}`}>
       <div className={`cow-avatar avatar-${cow.risk}`} aria-hidden="true">🐄</div>
       <div className="cow-card-main">
         <div className="cow-card-title"><strong>{cow.name}</strong><span>{cow.tag}</span></div>
@@ -741,6 +741,7 @@ export default function Home() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [reviewingCowId, setReviewingCowId] = useState<string | null>(null);
+  const [vetLoadingId, setVetLoadingId] = useState<string | null>(null);
   const [modelUpdates, setModelUpdates] = useState(0);
   const selectedState = stateOptions.find((option) => option.state === selectedStateName) ?? stateOptions[0];
   const lang = resolveStateLanguage(selectedState);
@@ -882,12 +883,16 @@ export default function Home() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ec: cow.sensor.ec, temperature: cow.sensor.temperature, label: cow.risk === "high" ? 1 : 0 }),
-        }).then((result) => result.json()).catch(() => null)
+        }).then((result) => {
+          if (!result.ok) throw new Error("API error");
+          return result.json();
+        }).catch(() => null)
       ));
       const lastResult = learnResults.filter(Boolean).pop();
       if (lastResult?.modelUpdates != null) setModelUpdates(lastResult.modelUpdates);
       return true;
     } catch {
+      showToast("Couldn't reach the server - check your connection and try again");
       // Keep the existing local fallback, but apply it to every selected cow when the API is unavailable.
       setCows((current) => current.map((cow) => {
         const updated = updatedCows.find((next) => next.id === cow.id);
@@ -899,7 +904,7 @@ export default function Home() {
         return { ...updated, score, risk, checked: "Just now", history: newHistory, recommendation: generateRecommendation(risk, null, forecast.trend, score) };
       }));
       setLastSynced("just now");
-      return true;
+      return false;
     }
   };
 
@@ -919,8 +924,10 @@ export default function Home() {
 
     const synced = await syncCows(cows, true);
     setChecking(false);
-    const highRiskCow = cows.find((cow) => cow.risk === "high");
-    showToast(synced ? `${ui.readingsTaken}${highRiskCow ? ` · ${highRiskCow.name} ${ui.advisoryHigh}` : ""}` : ui.noAnimals);
+    if (synced) {
+      const highRiskCow = cows.find((cow) => cow.risk === "high");
+      showToast(`${ui.readingsTaken}${highRiskCow ? ` · ${highRiskCow.name} ${ui.advisoryHigh}` : ""}`);
+    }
   };
 
   const toggleConnectivity = async () => {
@@ -935,8 +942,6 @@ export default function Home() {
         if (synced) {
           setQueuedCowIds([]);
           showToast(`${idsToSync.length} ${localizedExtras[lang].syncedReadings}`);
-        } else {
-          showToast(localizedExtras[lang].noAnimals);
         }
       } else showToast(localizedExtras[lang].backOnline);
     } else {
@@ -970,21 +975,45 @@ export default function Home() {
     );
   };
 
-  const validateAlert = (alertId: string, validation: Validation) => {
+  const validateAlert = (alertId: string, validation: Validation, suppressToast = false) => {
     const targetAlert = alerts.find((a) => a.id === alertId);
     setAlerts((current) => current.map((alert) => alert.id === alertId ? { ...alert, validation } : alert));
     if (targetAlert) {
       updateCowOnReview(targetAlert.cowId, validation);
     }
-    showToast(validation === "confirmed" ? (localizedExtras[lang].vetConfirmedToast) : (localizedExtras[lang].falseAlarmToast));
+    if (!suppressToast) {
+      showToast(validation === "confirmed" ? (localizedExtras[lang].vetConfirmedToast) : (localizedExtras[lang].falseAlarmToast));
+    }
   };
 
-  const resolveVetReview = (cowId: string, validation: "confirmed" | "false-alarm") => {
+  const resolveVetReview = async (cowId: string, validation: "confirmed" | "false-alarm") => {
     const cow = cows.find((item) => item.id === cowId);
     if (!cow) return;
+    setVetLoadingId(`${cowId}-${validation}`);
+    let apiSuccess = true;
+    try {
+      const response = await fetch("/api/learn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ec: cow.sensor.ec,
+          temperature: cow.sensor.temperature,
+          label: validation === "confirmed" ? 1 : 0,
+        }),
+      });
+      if (!response.ok) throw new Error("API error");
+      const data = await response.json();
+      if (data.modelUpdates != null) setModelUpdates(data.modelUpdates);
+    } catch {
+      apiSuccess = false;
+      showToast("Couldn't reach the server - check your connection and try again");
+    } finally {
+      setVetLoadingId(null);
+    }
+
     const existing = alerts.find((item) => item.cowId === cowId && item.validation === "active");
     if (existing) {
-      validateAlert(existing.id, validation);
+      validateAlert(existing.id, validation, !apiSuccess);
     } else {
       const reviewItem: AlertItem = {
         id: `review-${cowId}-${Date.now()}`,
@@ -998,7 +1027,9 @@ export default function Home() {
       };
       setAlerts((current) => [reviewItem, ...current]);
       updateCowOnReview(cowId, validation);
-      showToast(validation === "confirmed" ? (localizedExtras[lang].vetConfirmedToast) : (localizedExtras[lang].falseAlarmToast));
+      if (apiSuccess) {
+        showToast(validation === "confirmed" ? (localizedExtras[lang].vetConfirmedToast) : (localizedExtras[lang].falseAlarmToast));
+      }
     }
     setReviewingCowId(null);
   };
@@ -1006,9 +1037,22 @@ export default function Home() {
   const renderVetAction = (cow: Cow, hasResolvedAlert: boolean) => {
     if (hasResolvedAlert) return <span className="reviewed"><Check size={14} /> {text.reviewed}</span>;
     if (reviewingCowId === cow.id) {
-      return <div className="review-inline" onClick={(event) => event.stopPropagation()}><button className="tiny-action confirm" onClick={() => resolveVetReview(cow.id, "confirmed")}>{text.confirm}</button><button className="tiny-action false" onClick={() => resolveVetReview(cow.id, "false-alarm")}>{text.falseAlarmAction}</button><button className="review-cancel" onClick={() => setReviewingCowId(null)}>{ui.close}</button></div>;
+      const isConfirmLoading = vetLoadingId === `${cow.id}-confirmed`;
+      const isFalseLoading = vetLoadingId === `${cow.id}-false-alarm`;
+      const isAnyLoading = vetLoadingId !== null;
+      return (
+        <div className="review-inline" onClick={(event) => event.stopPropagation()}>
+          <button className="tiny-action confirm" onClick={() => resolveVetReview(cow.id, "confirmed")} disabled={isAnyLoading} aria-label={text.confirm}>
+            {isConfirmLoading ? <RefreshCw size={12} className="spin" /> : text.confirm}
+          </button>
+          <button className="tiny-action false" onClick={() => resolveVetReview(cow.id, "false-alarm")} disabled={isAnyLoading} aria-label={text.falseAlarmAction}>
+            {isFalseLoading ? <RefreshCw size={12} className="spin" /> : text.falseAlarmAction}
+          </button>
+          <button className="review-cancel" onClick={() => setReviewingCowId(null)} disabled={isAnyLoading} aria-label={ui.close}>{ui.close}</button>
+        </div>
+      );
     }
-    return <button className="tiny-action review" onClick={(event) => { event.stopPropagation(); setReviewingCowId(cow.id); }}><Search size={14} /> {text.review}</button>;
+    return <button className="tiny-action review" onClick={(event) => { event.stopPropagation(); setReviewingCowId(cow.id); }} aria-label={`${text.review} ${cow.name}`}><Search size={14} /> {text.review}</button>;
   };
 
   const setFarmerHome = () => {
