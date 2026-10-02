@@ -1,0 +1,7 @@
+const fs = require('fs');
+const imgBuffer = fs.readFileSync('client/public/logo.png');
+const base64Img = imgBuffer.toString('base64');
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <image href="data:image/png;base64,${base64Img}" x="0" y="0" width="128" height="128" preserveAspectRatio="xMidYMid meet" />
+</svg>`;
+fs.writeFileSync('client/public/logo-square.svg', svg);

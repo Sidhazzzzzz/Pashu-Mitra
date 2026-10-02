@@ -57,84 +57,100 @@ export function CooperativeDashboard() {
       </header>
 
       <div className="coop-info-strip">
-        <div className="coop-info-item">
-          <span className="coop-info-label">District Desk</span>
-          <span className="coop-info-value">{deskName}</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--coop-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink: 0}}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span style={{fontWeight: 600, color: 'var(--coop-fg)', fontSize: '0.95rem'}}>{deskName}</span>
+        <span style={{color: '#8c9a8f', margin: '0 4px'}}>·</span>
+        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.totalFarms}</strong> Registered Farms</span>
+        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.totalCows}</strong> Active Animals</span>
+        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.syncRate}%</strong> Telemetry Sync Rate</span>
+        <span style={{
+          marginLeft: 'auto', border: '1.5px solid var(--coop-primary)', borderRadius: 4,
+          padding: '4px 12px', fontSize: '0.85rem', fontWeight: 600, color: 'var(--coop-primary)',
+          display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0
+        }}>
+          <strong>{data.stats.highRiskCows}</strong> Subclinical Flags
+        </span>
+      </div>
+
+      <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24}}>
+        <div style={{display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px', background: '#e3f2fd', color: '#1565c0', borderRadius: 4, fontSize: '0.8rem', fontWeight: 600}} title="Runs TensorFlow.js Neural Network locally to predict risk">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          Powered by TF.js AI
         </div>
-        <div className="coop-info-item">
-          <span className="coop-info-label">{data.ui.registeredFarms}</span>
-          <span className="coop-info-value">{data.stats.totalFarms}</span>
-        </div>
-        <div className="coop-info-item">
-          <span className="coop-info-label">{data.ui.activeAnimals}</span>
-          <span className="coop-info-value">{data.stats.totalCows}</span>
-        </div>
-        <div className="coop-info-item">
-          <span className="coop-info-label">{data.dynamicUi.syncRateLabel || "Telemetry Sync Rate (Connected sensors reporting)"}</span>
-          <span className="coop-info-value">{data.stats.syncRate}%</span>
-        </div>
-        <div className="coop-info-item">
-          <span className="coop-info-label">Subclinical Flags</span>
-          <span className="coop-info-value">{data.stats.highRiskCows}</span>
-        </div>
-        <div className="coop-info-item" style={{marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: 12}}>
-          <div style={{display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px', background: '#e3f2fd', color: '#1565c0', borderRadius: 4, fontSize: '0.8rem', fontWeight: 600}} title="Runs TensorFlow.js Neural Network locally to predict risk">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            Powered by TF.js AI
-          </div>
-          <button 
-            className="coop-btn coop-btn-primary" 
-            onClick={() => data.takeReading()}
-            disabled={data.isReading}
-          >
-            {data.isReading ? data.extra.checking : data.extra.checkCowsNow}
-          </button>
-        </div>
+        <button 
+          className="coop-btn coop-btn-primary" 
+          onClick={() => data.takeReading()}
+          disabled={data.isReading}
+          style={{padding: '8px 20px', fontSize: '0.9rem'}}
+        >
+          {data.isReading ? data.extra.checking : data.extra.checkCowsNow}
+        </button>
       </div>
 
       <div className="coop-stats-grid">
         <div className="coop-stat-card">
-          <h3>{data.copy.animals}</h3>
-          <div className="coop-stat-value">{data.stats.totalCows}</div>
-          <div className="coop-stat-sub">+12 this month</div>
+          <div className="coop-stat-icon" style={{background: '#e8f5e9', color: '#1f5a45'}}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <div>
+            <div className="coop-stat-value">{data.stats.totalCows}</div>
+            <div className="coop-stat-sub">{data.copy.animals}<br/>+6 this month</div>
+          </div>
         </div>
         <div className="coop-stat-card">
-          <h3>{data.copy.farmsFlagged}</h3>
-          <div className="coop-stat-value">{new Set(data.cows.filter(c => c.risk === 'high').map(c => c.farm)).size}</div>
-          <div className="coop-stat-sub">Needs follow-up</div>
+          <div className="coop-stat-icon" style={{background: '#fff3e0', color: '#e2ab5b'}}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div>
+            <div className="coop-stat-value">{new Set(data.cows.filter(c => c.risk === 'high').map(c => c.farm)).size}</div>
+            <div className="coop-stat-sub">{data.copy.farmsFlagged}<br/>Needs follow-up</div>
+          </div>
         </div>
         <div className="coop-stat-card">
-          <h3>{data.extra.confirmedCasesMonth}</h3>
-          <div className="coop-stat-value">{data.cows.filter(c => c.treatmentStatus === 'under-treatment').length}</div>
-          <div className="coop-stat-sub">Treated early</div>
+          <div className="coop-stat-icon" style={{background: '#e8f5e9', color: '#1f5a45'}}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div>
+            <div className="coop-stat-value">{data.cows.filter(c => c.treatmentStatus === 'under-treatment').length}</div>
+            <div className="coop-stat-sub">{data.extra.confirmedCasesMonth}<br/>Treated early</div>
+          </div>
         </div>
         <div className="coop-stat-card">
-          <h3>Reading completion</h3>
-          <div className="coop-stat-value">{data.stats.syncRate}%</div>
-          <div className="coop-stat-sub">{data.extra.acrossFarms(data.stats.totalFarms)}</div>
+          <div className="coop-stat-icon" style={{background: '#e8f5e9', color: '#1f5a45'}}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          </div>
+          <div>
+            <div className="coop-stat-value">{data.stats.syncRate}%</div>
+            <div className="coop-stat-sub">Reading completion<br/>{data.extra.acrossFarms(data.stats.totalFarms)}</div>
+          </div>
         </div>
       </div>
 
       <div className="coop-dashboard-body">
         <section className="coop-priority-section">
           <div className="coop-priority-header">
-            <h2>{data.extra.animalsToReview}</h2>
+            <div>
+              <div style={{fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#8c9a8f', marginBottom: 4}}>Priority List</div>
+              <h2>{data.extra.animalsToReview}</h2>
+            </div>
             <div className="coop-priority-controls">
-              <input 
-                type="text" 
-                placeholder={data.extra.searchPlaceholder} 
-                className="coop-search"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-              />
-              <label style={{display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.9rem'}}>
-                <input 
-                  type="checkbox" 
-                  checked={sortRisk}
-                  onChange={e => setSortRisk(e.target.checked)}
-                />
+              <button 
+                className={`coop-btn ${sortRisk ? 'coop-btn-primary' : 'coop-btn-outline'}`}
+                onClick={() => setSortRisk(!sortRisk)}
+                style={{display: 'flex', alignItems: 'center', gap: 6}}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                 {data.extra.sortByRisk}
-              </label>
+              </button>
+              <button 
+                className="coop-btn coop-btn-outline"
+                onClick={() => setSearch(search ? '' : ' ')}
+                style={{padding: '6px 8px'}}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </button>
             </div>
           </div>
           
@@ -156,14 +172,15 @@ export function CooperativeDashboard() {
                   style={{cursor: 'pointer'}}
                 >
                   <td>
-                    <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
+                    <div style={{display: 'flex', alignItems: 'center', gap: 12}}>
                       <div 
-                        title={cow.sensor.state === 'stale' ? 'Offline' : cow.sensor.state === 'low-battery' ? 'Low Battery' : 'Connected'}
+                        className="coop-animal-avatar"
                         style={{
-                          width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
-                          background: cow.sensor.state === 'stale' ? '#c86b5e' : cow.sensor.state === 'low-battery' ? '#d99c30' : '#8c9a8f'
-                        }} 
-                      />
+                          background: cow.risk === 'high' ? '#c86b5e' : cow.risk === 'medium' ? '#e2ab5b' : '#9db793'
+                        }}
+                      >
+                        {cow.name.slice(0, 2).toUpperCase()}
+                      </div>
                       <div>
                         <strong>{cow.name}</strong>
                         <div style={{color: '#8c9a8f', fontSize: '0.85rem'}}>
@@ -174,7 +191,7 @@ export function CooperativeDashboard() {
                   </td>
                   <td>{cow.farm}</td>
                   <td>
-                    <span className={`coop-risk-badge ${cow.risk}`}>{cow.risk}</span>
+                    <span className={`coop-risk-badge ${cow.risk}`}>{cow.risk === 'high' ? 'High risk' : cow.risk === 'medium' ? 'Watch closely' : 'Normal'}</span>
                     <div style={{fontSize: '0.75rem', color: '#6c7a6f', marginTop: 4}}>{data.getReasonForCow(cow)}</div>
                   </td>
                   <td>{cow.checked}</td>

@@ -30,11 +30,26 @@ export function AnimalPanel({ cow, getRiskForecast, dynamicUi, takeReading }: { 
 
   return (
     <div className="coop-animal-panel">
-            <div className="coop-panel-header">
-        <p>Selected animal</p>
-        <h2>{cow.name}</h2>
-        <p>{cow.tag} • Risk Score: {cow.score}/100</p>
-        <div style={{display: 'flex', gap: 8, alignItems: 'center', marginTop: 12, fontSize: '0.85rem'}}>
+      <div className="coop-panel-header">
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
+          <div>
+            <div style={{fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#a3c4b3', marginBottom: 4}}>Selected Animal</div>
+            <h2 style={{display: 'flex', alignItems: 'baseline', gap: 8}}>{cow.name} <span style={{fontSize: '0.9rem', fontWeight: 400, color: '#a3c4b3'}}>{cow.tag}</span></h2>
+          </div>
+          <button style={{background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', marginTop: 8}}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+        <div style={{display: 'flex', gap: 8, alignItems: 'center', marginTop: 8}}>
+          <span className={`coop-risk-badge ${cow.risk}`} style={{fontSize: '0.8rem'}}>
+            {cow.risk === 'high' ? 'High risk' : cow.risk === 'medium' ? 'Watch closely' : 'Normal'}
+          </span>
+        </div>
+        <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'baseline', marginTop: 8}}>
+          <span style={{fontSize: '2.5rem', fontWeight: 800, lineHeight: 1}}>{cow.score}</span>
+          <span style={{fontSize: '1rem', color: '#a3c4b3'}}>/100</span>
+        </div>
+        <div style={{display: 'flex', gap: 8, alignItems: 'center', marginTop: 4, fontSize: '0.85rem'}}>
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: 4, 
             color: cow.sensor.state === 'stale' ? '#c86b5e' : cow.sensor.state === 'low-battery' ? '#d99c30' : '#8c9a8f'
