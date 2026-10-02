@@ -24,13 +24,12 @@ To provide a complete end-to-end demonstration, this prototype combines genuine 
 
 ## ✨ Key Features
 
-- **Dual Persona Interface**:
-  - **Farmer View**: High-contrast, intuitive status cards showing daily herd risk, simple actionable guidance, and offline status feedback.
-  - **Veterinary Field Desk**: Comprehensive triage table with 14-day telemetry trends, risk score breakdowns, and single-click alert resolution workflows.
+- **Single Cooperative Dashboard**: A unified control center designed for dairy cooperatives. Includes prioritized lists of high-risk animals across all registered farms, with a 14-day trend analysis chart and instant "Check cows now" inference.
+- **Comprehensive Screens**: Navigate seamlessly through Dashboard, Animals (full herd list), Farms (overview by farmer), Alerts, How it works, Settings, Profile, and deep-dive Cow Detail views.
 - **Early Mastitis Forecasting**: Multi-quarter electrical conductivity and thermal variance scoring powered by TensorFlow.js inference.
 - **Multilingual Support**: Complete UI localization in 8 regional languages:
-  - English (`en`), Hindi (`hi`), Marathi (`mr`), Gujarati (`gu`), Punjabi (`pa`), Tamil (`ta`), Kannada (`kn`), and Bengali (`bn`).
-- **Interactive Health Workflows**: Vets and field officers can update treatment states (*Under Treatment*, *Reviewed*, *False Alarm*), which immediately re-calculates active herd risk levels.
+  - English (`en`), Hindi (`hi`), Marathi (`mr`), Gujarati (`gu`), Punjabi (`pa`), Tamil (`ta`), Kannada (`kn`), and Telugu (`te`).
+- **Interactive Health Workflows**: Field officers can confirm alerts or mark them as false alarms. Running the "Check cows now" workflow calls the live ML model, updating scores, computing risk, and dynamically logging alerts across the entire dashboard state without a refresh.
 - **Responsive & Accessible**: Styled using Tailwind CSS with custom branding (`LogoMark` SVG and custom favicon).
 
 ---
