@@ -658,6 +658,8 @@ const renderHowItWorksView = () => {
   return (
     <div className="coop-layout">
       <Sidebar
+        activeAlertsCount={data.alerts.filter(a => a.validation === 'active').length}
+        extra={data.extra}
         queuedCount={data.queuedReviews.length}
         
         userName={userName} 
