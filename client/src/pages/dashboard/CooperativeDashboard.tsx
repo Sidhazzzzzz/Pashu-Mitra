@@ -45,14 +45,14 @@ export function CooperativeDashboard() {
   const renderDashboardView = () => (
     <>
       <header className="coop-header">
-        <span className="coop-kicker">Cooperative Field Desk</span>
+        <span className="coop-kicker">{data.extra.coopFieldDesk || "Cooperative Field Desk"}</span>
         <div className="coop-title-row">
           <h1>{data.dynamicUi.welcomeBack}</h1>
           <span className="coop-week-label">{data.stats.weekLabel}</span>
         </div>
         <p className="coop-subtitle">
           A clear picture across Sita Devi's Dairy and nearby farms 
-          <span className="coop-phase-label" style={{marginLeft: 12}}>Phase 2 roadmap - cooperative rollout</span>
+          <span className="coop-phase-label" style={{marginLeft: 12}}>{data.extra.phase2 || "Phase 2 roadmap - cooperative rollout"}</span>
         </p>
       </header>
 
@@ -62,9 +62,9 @@ export function CooperativeDashboard() {
         </svg>
         <span style={{fontWeight: 600, color: 'var(--coop-fg)', fontSize: '0.95rem'}}>{deskName}</span>
         <span style={{color: '#8c9a8f', margin: '0 4px'}}>·</span>
-        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.totalFarms}</strong> Registered Farms</span>
-        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.totalCows}</strong> Active Animals</span>
-        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.syncRate}%</strong> Telemetry Sync Rate</span>
+        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.totalFarms}</strong> {data.extra.registeredFarms || "Registered Farms"}</span>
+        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.totalCows}</strong> {data.extra.activeAnimals || "Active Animals"}</span>
+        <span style={{fontSize: '0.9rem', color: '#5c6a5f'}}><strong>{data.stats.syncRate}%</strong> {data.extra.telemetrySync || "Telemetry Sync Rate"}</span>
         <span style={{
           marginLeft: 'auto', border: '1.5px solid var(--coop-primary)', borderRadius: 4,
           padding: '4px 12px', fontSize: '0.85rem', fontWeight: 600, color: 'var(--coop-primary)',
@@ -77,7 +77,7 @@ export function CooperativeDashboard() {
       <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24}}>
         <div style={{display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px', background: '#e3f2fd', color: '#1565c0', borderRadius: 4, fontSize: '0.8rem', fontWeight: 600}} title="Runs TensorFlow.js Neural Network locally to predict risk">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-          Powered by TF.js AI
+          {data.extra.poweredBy || "Powered by TF.js AI"}
         </div>
         <button 
           className="coop-btn coop-btn-primary" 
@@ -96,7 +96,7 @@ export function CooperativeDashboard() {
           </div>
           <div>
             <div className="coop-stat-value">{data.stats.totalCows}</div>
-            <div className="coop-stat-sub">{data.copy.animals}<br/>+6 this month</div>
+            <div className="coop-stat-sub">{data.copy.animals}<br/>{data.extra.plus6Month || "+6 this month"}</div>
           </div>
         </div>
         <div className="coop-stat-card">
@@ -105,7 +105,7 @@ export function CooperativeDashboard() {
           </div>
           <div>
             <div className="coop-stat-value">{new Set(data.cows.filter(c => c.risk === 'high').map(c => c.farm)).size}</div>
-            <div className="coop-stat-sub">{data.copy.farmsFlagged}<br/>Needs follow-up</div>
+            <div className="coop-stat-sub">{data.copy.farmsFlagged}<br/>{data.extra.needsFollowUp || "Needs follow-up"}</div>
           </div>
         </div>
         <div className="coop-stat-card">
@@ -114,7 +114,7 @@ export function CooperativeDashboard() {
           </div>
           <div>
             <div className="coop-stat-value">{data.cows.filter(c => c.treatmentStatus === 'under-treatment').length}</div>
-            <div className="coop-stat-sub">{data.extra.confirmedCasesMonth}<br/>Treated early</div>
+            <div className="coop-stat-sub">{data.extra.confirmedCasesMonth}<br/>{data.extra.treatedEarly || "Treated early"}</div>
           </div>
         </div>
         <div className="coop-stat-card">
@@ -123,7 +123,7 @@ export function CooperativeDashboard() {
           </div>
           <div>
             <div className="coop-stat-value">{data.stats.syncRate}%</div>
-            <div className="coop-stat-sub">Reading completion<br/>{data.extra.acrossFarms(data.stats.totalFarms)}</div>
+            <div className="coop-stat-sub">{data.extra.readingCompletion || "Reading completion"}<br/>{data.extra.acrossFarms(data.stats.totalFarms)}</div>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@ export function CooperativeDashboard() {
         <section className="coop-priority-section">
           <div className="coop-priority-header">
             <div>
-              <div style={{fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#8c9a8f', marginBottom: 4}}>Priority List</div>
+              <div style={{fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#8c9a8f', marginBottom: 4}}>{data.extra.priorityList || "Priority List"}</div>
               <h2>{data.extra.animalsToReview}</h2>
             </div>
             <div className="coop-priority-controls">
@@ -161,7 +161,7 @@ export function CooperativeDashboard() {
                 <th>{data.extra.farm}</th>
                 <th>{data.extra.risk}</th>
                 <th>{data.extra.lastReading}</th>
-                <th>Action</th>
+                <th>{data.extra.action || "Action"}</th>
               </tr>
             </thead>
             <tbody>
@@ -184,7 +184,7 @@ export function CooperativeDashboard() {
                       <div>
                         <strong>{cow.name}</strong>
                         <div style={{color: '#8c9a8f', fontSize: '0.85rem'}}>
-                          {cow.tag} • Batt: {cow.sensor.battery}%
+                          {cow.tag} • {data.extra.batt || "Batt"}: {cow.sensor.battery}%
                         </div>
                       </div>
                     </div>
@@ -301,7 +301,7 @@ export function CooperativeDashboard() {
                       <div>
                         <strong>{cow.name}</strong>
                         <div style={{color: '#8c9a8f', fontSize: '0.85rem'}}>
-                          {cow.tag} • Batt: {cow.sensor.battery}%
+                          {cow.tag} • {data.extra.batt || "Batt"}: {cow.sensor.battery}%
                         </div>
                       </div>
                     </div>

@@ -42,7 +42,7 @@ export function AnimalPanel({ cow, getRiskForecast }: { cow: Cow | null, getRisk
     <div className="coop-animal-panel">
       <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20}}>
         <div>
-          <div style={{fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#a3c4b3', marginBottom: 6}}>Selected Animal</div>
+          <div style={{fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#a3c4b3', marginBottom: 6}}>{data.extra.selectedAnimalTitle || "Selected Animal"}</div>
           <h2 style={{display: 'flex', alignItems: 'baseline', gap: 12, margin: 0, fontSize: '1.8rem', color: '#ffffff'}}>
             {cow.name} 
             <span style={{fontSize: '1rem', fontWeight: 500, color: '#a3c4b3'}}>{cow.tag}</span>
