@@ -20,7 +20,6 @@
 
 /* Layout */
 .coop-layout {
-  zoom: 0.75;
   display: flex;
   min-height: 100vh;
   background: var(--coop-bg);
@@ -723,3 +722,10 @@
 .coop-lang-picker { background: white; border: 1px solid #e8e6df; border-radius: 20px; padding: 6px 16px; display: flex; align-items: center; gap: 8px; }
 .coop-lang-picker select { border: none; background: transparent; outline: none; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: #111812; padding: 4px; }
 
+
+@media (min-width: 901px) {
+  .coop-layout {
+    zoom: 0.75;
+    min-height: 133.34vh;
+  }
+}
