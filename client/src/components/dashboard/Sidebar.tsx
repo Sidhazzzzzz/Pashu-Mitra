@@ -18,12 +18,21 @@ export function Sidebar({ userName, deskName, isOnline, activeView, setActiveVie
   
   return (
     <aside className="coop-sidebar">
-      <div className="coop-sidebar-header">
+      <div className="coop-sidebar-header" style={{borderBottom: 'none'}}>
         <div className="coop-sidebar-logo">
-          <img src="/logo.png" alt="Pashu Mitra Logo" />
+          <div style={{
+            background: 'var(--coop-primary)',
+            width: 44, height: 44, borderRadius: 12,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+          }}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 14.5c0-4.5 3.5-7 8-7s8 2.5 8 7M10 21v-4m4 4v-4m4.5-9L22 9l-1 5M3.5 8L2 9l1 5"></path>
+              <circle cx="12" cy="14" r="5"></circle>
+            </svg>
+          </div>
           <div>
-            <div style={{fontWeight: 700, fontSize: '1.1rem', color: 'var(--coop-primary)'}}>Pashu Mitra</div>
-            <div className="coop-sidebar-tagline">{extra?.tagline || "Healthy Cattle, Prosperous Farmers."}</div>
+            <div style={{fontWeight: 800, fontSize: '1.2rem', color: '#111812', letterSpacing: '-0.02em', lineHeight: 1.2}}>Pashu Mitra</div>
+            <div className="coop-sidebar-tagline">{extra?.tagline || "Healthy Cattle. Prosperous Farmers."}</div>
           </div>
         </div>
       </div>

@@ -105,42 +105,42 @@ export function AnimalPanel({ cow, getRiskForecast }: { cow: Cow | null, getRisk
       </div>
 
       {/* Sensor tiles */}
-      <div style={{display: 'flex', gap: 12, marginTop: 12, flexWrap: 'wrap'}}>
-        <div style={{flex: '1 1 80px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: 12, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-          <div style={{display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 4}}>
-            <Droplet size={20} color="#ff6b6b" style={{marginTop: 2, flexShrink: 0}} />
+      <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginTop: 12}}>
+        <div style={{background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: '12px 8px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+          <div style={{display: 'flex', gap: 6, alignItems: 'flex-start', marginBottom: 4}}>
+            <Droplet size={16} color="#ff6b6b" style={{marginTop: 2, flexShrink: 0}} />
             <div style={{minWidth: 0}}>
-              <div style={{fontSize: '0.75rem', fontWeight: 600, color: '#a3c4b3', marginBottom: 2}}>EC</div>
-              <div style={{fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', lineHeight: 1, whiteSpace: 'nowrap'}}>{cow.sensor.ec.toFixed(2)}</div>
+              <div style={{fontSize: '0.7rem', fontWeight: 600, color: '#a3c4b3', marginBottom: 2}}>EC</div>
+              <div style={{fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', lineHeight: 1}}>{cow.sensor.ec.toFixed(2)}</div>
             </div>
           </div>
-          <div style={{fontSize: '0.75rem', color: parseFloat(ecDelta) > 15 ? '#ff6b6b' : '#1dd1a1', fontWeight: 700, textAlign: 'center'}}>
+          <div style={{fontSize: '0.7rem', color: parseFloat(ecDelta) > 15 ? '#ff6b6b' : '#1dd1a1', fontWeight: 700, textAlign: 'center'}}>
             ↑ {ecDelta}%
           </div>
         </div>
         
-        <div style={{flex: '1 1 80px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: 12, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-          <div style={{display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 4}}>
-            <Thermometer size={20} color="#ff6b6b" style={{marginTop: 2, flexShrink: 0}} />
+        <div style={{background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: '12px 8px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+          <div style={{display: 'flex', gap: 6, alignItems: 'flex-start', marginBottom: 4}}>
+            <Thermometer size={16} color="#ff6b6b" style={{marginTop: 2, flexShrink: 0}} />
             <div style={{minWidth: 0}}>
-              <div style={{fontSize: '0.75rem', fontWeight: 600, color: '#a3c4b3', marginBottom: 2}}>Temp.</div>
-              <div style={{fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', lineHeight: 1, whiteSpace: 'nowrap'}}>{cow.sensor.temperature.toFixed(1)}°</div>
+              <div style={{fontSize: '0.7rem', fontWeight: 600, color: '#a3c4b3', marginBottom: 2}}>Temp.</div>
+              <div style={{fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', lineHeight: 1}}>{cow.sensor.temperature.toFixed(1)}°</div>
             </div>
           </div>
-          <div style={{fontSize: '0.75rem', color: parseFloat(tempDelta) > 0.5 ? '#ff6b6b' : '#1dd1a1', fontWeight: 700, textAlign: 'center'}}>
+          <div style={{fontSize: '0.7rem', color: parseFloat(tempDelta) > 0.5 ? '#ff6b6b' : '#1dd1a1', fontWeight: 700, textAlign: 'center'}}>
             ↑ {tempDelta}°
           </div>
         </div>
         
-        <div style={{flex: '1 1 80px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: 12, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-          <div style={{display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 4}}>
-            <BarChart2 size={20} color="#1dd1a1" style={{marginTop: 2, flexShrink: 0}} />
+        <div style={{background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12, padding: '12px 8px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+          <div style={{display: 'flex', gap: 6, alignItems: 'flex-start', marginBottom: 4}}>
+            <BarChart2 size={16} color="#1dd1a1" style={{marginTop: 2, flexShrink: 0}} />
             <div style={{minWidth: 0}}>
-              <div style={{fontSize: '0.75rem', fontWeight: 600, color: '#a3c4b3', marginBottom: 2}}>Yield</div>
-              <div style={{fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', lineHeight: 1, whiteSpace: 'nowrap'}}>18.4L</div>
+              <div style={{fontSize: '0.7rem', fontWeight: 600, color: '#a3c4b3', marginBottom: 2}}>Yield</div>
+              <div style={{fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', lineHeight: 1}}>18.4L</div>
             </div>
           </div>
-          <div style={{fontSize: '0.75rem', color: '#1dd1a1', fontWeight: 700, textAlign: 'center'}}>
+          <div style={{fontSize: '0.7rem', color: '#1dd1a1', fontWeight: 700, textAlign: 'center'}}>
             ↓ 12%
           </div>
         </div>

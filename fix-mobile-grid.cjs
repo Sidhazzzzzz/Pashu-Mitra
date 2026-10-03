@@ -1,0 +1,1 @@
+const fs = require('fs'); let code = fs.readFileSync('client/src/pages/dashboard/dashboard.css', 'utf8'); code = code.replace('.coop-animal-panel-light > div:nth-child(3)', '.coop-animal-panel > div:nth-child(3), .coop-animal-panel-light > div:nth-child(3)'); fs.writeFileSync('client/src/pages/dashboard/dashboard.css', code);

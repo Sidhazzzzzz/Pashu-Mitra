@@ -12,16 +12,13 @@ export function TopBar({ lastSynced, selectedStateName, stateOptions, onStateCha
   return (
     <header className="coop-topbar">
       <div className="coop-topbar-left">
-        <div className="coop-sync-status-badge">
-          <Clock3 size={14} /> <span>Last synced {lastSynced} ago</span>
-        </div>
       </div>
 
       <div className="coop-topbar-right">
-        <button className="coop-notification-btn">
-          <Bell size={20} />
-          <span className="coop-notification-dot"></span>
-        </button>
+        <div className="coop-sync-status-badge">
+          <Clock3 size={14} /> <span>Last synced {lastSynced}</span>
+          <span style={{width: 8, height: 8, borderRadius: '50%', background: '#1dd1a1', marginLeft: 4}}></span>
+        </div>
         
         <div className="coop-lang-picker">
           <Globe size={16} color="#4a7c59" />
@@ -31,7 +28,7 @@ export function TopBar({ lastSynced, selectedStateName, stateOptions, onStateCha
           >
             {stateOptions.map(opt => (
               <option key={opt.state} value={opt.state}>
-                {opt.native} • {opt.languageLabel}
+                {opt.languageLabel}
               </option>
             ))}
           </select>
