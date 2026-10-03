@@ -238,7 +238,7 @@ export function CooperativeDashboard() {
         </section>
 
         <aside>
-          <AnimalPanel cow={selectedCow} getRiskForecast={data.getRiskForecast} dynamicUi={data.dynamicUi} takeReading={data.takeReading} />
+          <AnimalPanel cow={selectedCow} getRiskForecast={data.getRiskForecast} extra={data.extra} dynamicUi={data.dynamicUi} takeReading={data.takeReading} />
         </aside>
       </div>
     </>
@@ -435,7 +435,7 @@ export function CooperativeDashboard() {
           </section>
         </div>
         <aside style={{width: 320, flexShrink: 0}}>
-          <AnimalPanel cow={selectedCow} getRiskForecast={data.getRiskForecast} dynamicUi={data.dynamicUi} takeReading={data.takeReading} />
+          <AnimalPanel cow={selectedCow} getRiskForecast={data.getRiskForecast} extra={data.extra} dynamicUi={data.dynamicUi} takeReading={data.takeReading} />
         </aside>
       </div>
     );

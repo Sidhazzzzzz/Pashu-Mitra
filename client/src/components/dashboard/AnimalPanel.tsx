@@ -2,7 +2,7 @@ import { Area, AreaChart, ResponsiveContainer, YAxis, XAxis, CartesianGrid } fro
 import { Droplet, Thermometer, BarChart2, AlertCircle } from "lucide-react";
 import type { Cow } from "../../lib/dashboard-data";
 
-export function AnimalPanel({ cow, getRiskForecast }: { cow: Cow | null, getRiskForecast: (history: number[]) => any }) {
+export function AnimalPanel({ cow, getRiskForecast, extra }: { cow: Cow | null, getRiskForecast: (history: number[]) => any, extra?: any, dynamicUi?: any, takeReading?: any }) {
   if (!cow) {
     return (
       <div className="coop-animal-panel" style={{ justifyContent: "center", alignItems: "center", opacity: 0.7 }}>
@@ -42,7 +42,7 @@ export function AnimalPanel({ cow, getRiskForecast }: { cow: Cow | null, getRisk
     <div className="coop-animal-panel">
       <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20}}>
         <div>
-          <div style={{fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#a3c4b3', marginBottom: 6}}>{data.extra.selectedAnimalTitle || "Selected Animal"}</div>
+          <div style={{fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 700, color: '#a3c4b3', marginBottom: 6}}>{(extra && extra.selectedAnimalTitle) || "Selected Animal"}</div>
           <h2 style={{display: 'flex', alignItems: 'baseline', gap: 12, margin: 0, fontSize: '1.8rem', color: '#ffffff'}}>
             {cow.name} 
             <span style={{fontSize: '1rem', fontWeight: 500, color: '#a3c4b3'}}>{cow.tag}</span>
