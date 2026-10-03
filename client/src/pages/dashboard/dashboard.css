@@ -590,6 +590,17 @@ body.cooperative-mode {
   display: block;
 }
 
+@media (max-width: 1024px) {
+  .coop-dashboard-body {
+    grid-template-columns: 1fr;
+  }
+  .coop-search-bar { width: 200px; }
+  .coop-animal-panel, .coop-animal-panel-light {
+    position: relative;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 900px) {
   .coop-layout {
     flex-direction: column;
@@ -603,12 +614,32 @@ body.cooperative-mode {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 16px;
+    gap: 8px;
+  }
+  .coop-nav-item {
+    flex: 1;
+    min-width: 100px;
+    justify-content: center;
   }
   .coop-stats-grid {
     grid-template-columns: 1fr 1fr;
   }
-  .coop-dashboard-body {
-    grid-template-columns: 1fr;
+}
+
+@media (max-width: 768px) {
+  .coop-topbar {
+    padding: 0 16px;
+    gap: 12px;
+  }
+  .coop-topbar-right { gap: 12px; }
+  .coop-sync-status-badge span { display: none; } /* Hide text, keep icon */
+  .coop-search-bar { width: 140px; }
+  .coop-content { padding: 16px; }
+  .coop-title-row h1 { font-size: 2rem; }
+  .coop-info-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 }
 
@@ -616,16 +647,31 @@ body.cooperative-mode {
   .coop-stats-grid {
     grid-template-columns: 1fr;
   }
-  .coop-info-strip {
-    flex-direction: column;
-    gap: 16px;
-  }
   .coop-table {
     display: block;
     overflow-x: auto;
+    white-space: nowrap;
   }
-  .coop-title-row h1 {
-    font-size: 1.8rem;
+  .coop-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .coop-priority-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .coop-priority-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .coop-search-bar { display: none; } /* Hide search on very small screens */
+  .coop-lang-picker select { width: 100px; text-overflow: ellipsis; }
+  
+  /* Make animal panel sensor tiles grid wrap */
+  .coop-animal-panel-light > div:nth-child(3) {
+    grid-template-columns: 1fr !important; 
   }
 }
 
@@ -670,3 +716,14 @@ body.cooperative-mode {
   flex-direction: column;
   justify-content: center;
 }
+
+/* Enhanced Topbar Classes */
+.coop-topbar-left { display: flex; align-items: center; gap: 16px; flex: 1; }
+.coop-search-bar { display: flex; align-items: center; gap: 8px; background: #f3f7f2; padding: 8px 16px; border-radius: 8px; color: #6c7a6f; font-size: 0.9rem; width: 280px; transition: width 0.3s; }
+.coop-search-bar input { border: none; background: transparent; outline: none; width: 100%; color: #111812; }
+.coop-topbar-right { display: flex; align-items: center; gap: 24px; }
+.coop-sync-status-badge { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #6c7a6f; background: rgba(0,0,0,0.03); padding: 6px 12px; border-radius: 20px; }
+.coop-notification-btn { background: transparent; border: none; color: #6c7a6f; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; padding: 4px; }
+.coop-notification-dot { position: absolute; top: 0; right: 2px; width: 8px; height: 8px; background: #dc4a42; border-radius: 50%; border: 2px solid white; }
+.coop-lang-picker { background: white; border: 1px solid #e8e6df; border-radius: 8px; padding: 4px 8px; display: flex; align-items: center; gap: 8px; }
+.coop-lang-picker select { border: none; background: transparent; outline: none; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: #111812; padding: 4px; }
