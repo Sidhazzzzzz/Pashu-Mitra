@@ -251,7 +251,28 @@ export function CooperativeDashboard() {
           <h1>{data.extra.allAnimals}</h1>
         </div>
       </header>
-      <section className="coop-priority-section">
+      <div className="coop-stats-grid" style={{marginBottom: 24}}>
+        <div className="coop-stat-card">
+          <div className="coop-stat-icon" style={{background: '#e8f5e9', color: '#1f5a45'}}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <div>
+            <div className="coop-stat-value">{data.stats.totalCows}</div>
+            <div className="coop-stat-sub">{data.extra.activeAnimals || "Active Animals"}</div>
+          </div>
+        </div>
+        <div className="coop-stat-card">
+          <div className="coop-stat-icon" style={{background: '#fff3e0', color: '#e2ab5b'}}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div>
+            <div className="coop-stat-value">{data.stats.highRiskCows}</div>
+            <div className="coop-stat-sub">{data.extra.subclinicalFlags || "High Risk Flags"}</div>
+          </div>
+        </div>
+      </div>
+      <div className="coop-dashboard-body">
+        <section className="coop-priority-section">
         <div className="coop-priority-header">
           <div className="coop-priority-controls">
             <input 
@@ -315,6 +336,7 @@ export function CooperativeDashboard() {
           </tbody>
         </table>
       </section>
+      </div>
     </>
   );
 
@@ -495,7 +517,8 @@ export function CooperativeDashboard() {
           <h1>{data.ui.openAlerts}</h1>
         </div>
       </header>
-      <section className="coop-priority-section">
+      <div className="coop-dashboard-body">
+        <section className="coop-priority-section">
         <table className="coop-table">
           <thead>
             <tr>
@@ -527,6 +550,7 @@ export function CooperativeDashboard() {
           </tbody>
         </table>
       </section>
+      </div>
     </>
   );
 
