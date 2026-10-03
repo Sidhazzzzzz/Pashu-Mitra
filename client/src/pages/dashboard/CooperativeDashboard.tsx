@@ -251,37 +251,6 @@ export function CooperativeDashboard() {
           <h1>{data.extra.allAnimals}</h1>
         </div>
       </header>
-
-      <div className="coop-stats-grid" style={{marginBottom: 24}}>
-        <div className="coop-stat-card">
-          <div className="coop-stat-icon" style={{background: '#e8f5e9', color: '#1f5a45'}}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-          </div>
-          <div>
-            <div className="coop-stat-value">{data.stats.totalCows}</div>
-            <div className="coop-stat-sub">Total Monitored</div>
-          </div>
-        </div>
-        <div className="coop-stat-card">
-          <div className="coop-stat-icon" style={{background: '#fff3e0', color: '#e2ab5b'}}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-          </div>
-          <div>
-            <div className="coop-stat-value">{data.stats.highRiskCows}</div>
-            <div className="coop-stat-sub">High Risk Flags</div>
-          </div>
-        </div>
-        <div className="coop-stat-card">
-          <div className="coop-stat-icon" style={{background: '#e8f5e9', color: '#1f5a45'}}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-          </div>
-          <div>
-            <div className="coop-stat-value">{data.stats.syncRate}%</div>
-            <div className="coop-stat-sub">Sensors Active</div>
-          </div>
-        </div>
-      </div>
-
       <section className="coop-priority-section">
         <div className="coop-priority-header">
           <div className="coop-priority-controls">
@@ -460,29 +429,15 @@ export function CooperativeDashboard() {
           </div>
           <p className="coop-subtitle">{data.dynamicUi.profileTitle} &middot; {deskName}</p>
         </header>
-        <div style={{ maxWidth: 500, display: 'flex', flexDirection: 'column', gap: 24 }}>
-          <div className="coop-pitch-card" style={{ gap: 16 }}>
-            <div style={{display: 'flex', alignItems: 'center', gap: 12}}>
-              <div className="coop-stat-icon" style={{background: '#f3f7f2', color: '#4a7c59', margin: 0, width: 40, height: 40}}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              </div>
-              <div>
-                <h3 style={{marginBottom: 2, marginTop: 0}}>Cooperative Officer</h3>
-                <p style={{margin: 0, fontSize: '0.85rem', color: '#6c7a6f'}}>{data.dynamicUi.contactInfo}</p>
-              </div>
-            </div>
+        <div style={{ maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <div className="coop-pitch-card">
+            <h3>{data.dynamicUi.contactInfo}</h3>
           </div>
-          <div className="coop-pitch-card" style={{ gap: 16 }}>
-            <div style={{display: 'flex', alignItems: 'center', gap: 12}}>
-              <div className="coop-stat-icon" style={{background: '#fff3e0', color: '#e2ab5b', margin: 0, width: 40, height: 40}}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              </div>
-              <div>
-                <h3 style={{marginBottom: 2, marginTop: 0}}>{data.dynamicUi.reviewsCompleted(reviewsDone)}</h3>
-                <p style={{margin: 0, fontSize: '0.85rem', color: '#6c7a6f'}}>Thank you for helping keep the herds healthy.</p>
-              </div>
-            </div>
+          <div className="coop-pitch-card">
+            <h3 style={{fontSize: '1.2rem', color: 'var(--coop-primary)', margin: 0}}>{data.dynamicUi.reviewsCompleted(reviewsDone)}</h3>
+            <p style={{margin: '4px 0 0 0', color: '#6c7a6f'}}>Thank you for helping keep the herds healthy.</p>
           </div>
+          
         </div>
       </>
     );
@@ -505,28 +460,6 @@ export function CooperativeDashboard() {
             <h1>{data.extra.allFarms}</h1>
           </div>
         </header>
-
-        <div className="coop-stats-grid" style={{marginBottom: 24}}>
-          <div className="coop-stat-card">
-            <div className="coop-stat-icon" style={{background: '#e8f5e9', color: '#1f5a45'}}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            </div>
-            <div>
-              <div className="coop-stat-value">{farmsMap.size}</div>
-              <div className="coop-stat-sub">Total Farms</div>
-            </div>
-          </div>
-          <div className="coop-stat-card">
-            <div className="coop-stat-icon" style={{background: '#fff3e0', color: '#e2ab5b'}}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-            </div>
-            <div>
-              <div className="coop-stat-value">{Array.from(farmsMap.values()).filter(f => f.flagged > 0).length}</div>
-              <div className="coop-stat-sub">Farms With Flags</div>
-            </div>
-          </div>
-        </div>
-
         <section className="coop-priority-section">
           <table className="coop-table">
             <thead>
@@ -537,20 +470,13 @@ export function CooperativeDashboard() {
               </tr>
             </thead>
             <tbody>
-              {Array.from(farmsMap.entries()).map(([farmName, stats]) => (
-                <tr 
-                  key={farmName}
-                  onClick={() => { setSearch(farmName); setActiveView('animals'); }}
-                  style={{cursor: 'pointer'}}
-                >
-                  <td>
-                    <div style={{display: 'flex', alignItems: 'center', gap: 12}}>
-                      <div className="coop-animal-avatar" style={{background: '#e8f5e9', color: '#1f5a45', borderRadius: 8}}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                      </div>
-                      <strong>{farmName}</strong>
-                    </div>
-                  </td>
+                              {Array.from(farmsMap.entries()).map(([farmName, stats]) => (
+                  <tr 
+                    key={farmName}
+                    onClick={() => { setSearch(farmName); setActiveView('animals'); }}
+                    style={{cursor: 'pointer'}}
+                  >
+                  <td><strong>{farmName}</strong></td>
                   <td>{stats.total}</td>
                   <td>{stats.flagged > 0 ? <span className="coop-risk-badge high">{stats.flagged} needs attention</span> : <span className="coop-risk-badge low">0</span>}</td>
                 </tr>
@@ -569,19 +495,6 @@ export function CooperativeDashboard() {
           <h1>{data.ui.openAlerts}</h1>
         </div>
       </header>
-
-      <div className="coop-stats-grid" style={{marginBottom: 24}}>
-        <div className="coop-stat-card">
-          <div className="coop-stat-icon" style={{background: '#fff3e0', color: '#e2ab5b'}}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-          </div>
-          <div>
-            <div className="coop-stat-value">{data.alerts.length}</div>
-            <div className="coop-stat-sub">Active Alerts</div>
-          </div>
-        </div>
-      </div>
-
       <section className="coop-priority-section">
         <table className="coop-table">
           <thead>
@@ -594,7 +507,7 @@ export function CooperativeDashboard() {
             </tr>
           </thead>
           <tbody>
-            {data.alerts.length > 0 ? data.alerts.map(alert => (
+            {data.alerts.map(alert => (
               <tr 
                 key={alert.id}
                 onClick={() => { setSelectedCowId(alert.cowId); setActiveView('cow-detail'); }}
@@ -602,14 +515,7 @@ export function CooperativeDashboard() {
               >
                 <td>{alert.date}</td>
                 <td>{alert.time}</td>
-                <td>
-                  <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
-                    <div className="coop-animal-avatar" style={{width: 32, height: 32, fontSize: '0.8rem', background: '#f6f4ed', color: '#8c9a8f'}}>
-                      {alert.cowId.replace('cow', '')}
-                    </div>
-                    <strong>{alert.cowId}</strong>
-                  </div>
-                </td>
+                <td>{alert.cowId}</td>
                 <td><strong>{alert.title}</strong><br/><span style={{fontSize: '0.85rem', color: '#6c7a6f'}}>{alert.body}</span></td>
                 <td>
                   <span className={`coop-risk-badge ${alert.validation === 'active' ? 'high' : alert.validation === 'resolved' ? 'low' : alert.validation === 'confirmed' ? 'medium' : 'low'}`}>
@@ -617,9 +523,7 @@ export function CooperativeDashboard() {
                   </span>
                 </td>
               </tr>
-            )) : (
-              <tr><td colSpan={5} style={{textAlign: "center", color: "#8c9a8f", padding: "40px 0"}}>No active alerts.</td></tr>
-            )}
+            ))}
           </tbody>
         </table>
       </section>
@@ -741,43 +645,32 @@ const renderHowItWorksView = () => {
         </div>
       </header>
       
-      <div style={{ maxWidth: 500, display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div style={{ maxWidth: 480 }}>
         <div className="coop-pitch-card" style={{ gap: 16 }}>
-          <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12}}>
-            <div className="coop-stat-icon" style={{background: '#f3f7f2', color: '#4a7c59', margin: 0, width: 40, height: 40}}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            </div>
-            <div>
-              <h3 style={{marginBottom: 2, marginTop: 0}}>Display Language</h3>
-              <p style={{margin: 0, fontSize: '0.85rem', color: '#6c7a6f'}}>Choose your preferred region and language</p>
-            </div>
+          <div>
+            <h3 style={{marginBottom: 8}}>Display Language & Region</h3>
+            <select 
+              className="coop-search" 
+              style={{width: '100%'}}
+              value={data.selectedStateName} 
+              onChange={(e) => data.setSelectedStateName(e.target.value)}
+            >
+              {data.stateOptions.map(opt => (
+                <option key={opt.state} value={opt.state}>
+                  {opt.native} · {opt.languageLabel} ({opt.state})
+                </option>
+              ))}
+            </select>
           </div>
-          <select 
-            className="coop-search" 
-            style={{width: '100%', padding: '12px 16px', background: '#fdfbf7', border: '1px solid #e8e6df'}}
-            value={data.selectedStateName} 
-            onChange={(e) => data.setSelectedStateName(e.target.value)}
-          >
-            {data.stateOptions.map(opt => (
-              <option key={opt.state} value={opt.state}>
-                {opt.native} • {opt.languageLabel} ({opt.state})
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="coop-pitch-card" style={{ gap: 16 }}>
-          <div style={{display: 'flex', alignItems: 'center', gap: 12}}>
-            <div className="coop-stat-icon" style={{background: '#f3f7f2', color: '#4a7c59', margin: 0, width: 40, height: 40}}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-            </div>
-            <div>
-              <h3 style={{marginBottom: 2, marginTop: 0}}>About Pashu Mitra</h3>
-              <p style={{margin: 0, fontSize: '0.85rem', color: '#6c7a6f'}}>
-                Version 1.0.0 (Cooperative Build) <br/>
-                © 2026 Pashu Mitra
-              </p>
-            </div>
+          
+          <hr style={{border: 0, borderTop: '1px solid var(--coop-border)', margin: '8px 0'}} />
+          
+          <div>
+            <h3 style={{marginBottom: 4}}>About Pashu Mitra</h3>
+            <p style={{margin: 0, fontSize: '0.9rem', color: '#6c7a6f'}}>
+              Version 1.0.0 (Cooperative Build)<br/>
+              © 2026 Pashu Mitra
+            </p>
           </div>
         </div>
       </div>
