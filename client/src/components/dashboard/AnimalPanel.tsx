@@ -50,7 +50,7 @@ export function AnimalPanel({ cow, getRiskForecast, extra }: { cow: Cow | null, 
         </div>
       </div>
 
-      <div style={{background: 'rgba(255,255,255,0.05)', borderRadius: 16, padding: '20px', marginBottom: 12, border: '1px solid rgba(255,255,255,0.1)'}}>
+      <div style={{background: '#ffe4c4', borderRadius: 16, padding: '20px', marginBottom: 12, border: '1px solid rgba(0,0,0,0.05)'}}>
         <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12}}>
           <div style={{
             background: isHighRisk ? 'rgba(255,107,107,0.15)' : isMediumRisk ? 'rgba(254,202,87,0.15)' : 'rgba(29,209,161,0.15)',
@@ -63,8 +63,8 @@ export function AnimalPanel({ cow, getRiskForecast, extra }: { cow: Cow | null, 
             {cow.risk === 'high' ? 'High risk' : cow.risk === 'medium' ? 'Watch closely' : 'Normal'}
           </div>
           <div style={{textAlign: 'right'}}>
-            <span style={{fontSize: '2.5rem', fontWeight: 800, lineHeight: 1, color: '#ffffff'}}>{displayScore}</span>
-            <span style={{fontSize: '1rem', color: '#a3c4b3', fontWeight: 600}}>/100</span>
+            <span style={{fontSize: '2.5rem', fontWeight: 800, lineHeight: 1, color: '#1f5a45'}}>{displayScore}</span>
+            <span style={{fontSize: '1rem', color: '#2c3e2e', fontWeight: 600}}>/100</span>
           </div>
         </div>
 
@@ -78,14 +78,14 @@ export function AnimalPanel({ cow, getRiskForecast, extra }: { cow: Cow | null, 
                   <stop offset="100%" stopColor={chartColor} stopOpacity={0.0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" vertical={false} />
               <XAxis 
                 dataKey="day" 
-                stroke="#a3c4b3" 
+                stroke="#2c3e2e" 
                 fontSize={11} 
                 tickLine={false} 
                 axisLine={false}
-                tick={{fill: '#a3c4b3'}}
+                tick={{fill: '#2c3e2e'}}
                 dy={10}
               />
               <YAxis domain={[0, 100]} hide />
