@@ -1,5 +1,5 @@
 import type { StateOption } from "../../lib/dashboard-data";
-import { Clock3, Globe, Search, Bell } from "lucide-react";
+import { Clock3, Globe, Bell } from "lucide-react";
 
 type TopBarProps = {
   lastSynced: string;
@@ -12,17 +12,12 @@ export function TopBar({ lastSynced, selectedStateName, stateOptions, onStateCha
   return (
     <header className="coop-topbar">
       <div className="coop-topbar-left">
-        <div className="coop-search-bar">
-          <Search size={16} />
-          <input type="text" placeholder="Search cows, farms..." />
+        <div className="coop-sync-status-badge">
+          <Clock3 size={14} /> <span>Last synced {lastSynced} ago</span>
         </div>
       </div>
 
       <div className="coop-topbar-right">
-        <div className="coop-sync-status-badge">
-          <Clock3 size={14} /> <span>Last synced {lastSynced} ago</span>
-        </div>
-        
         <button className="coop-notification-btn">
           <Bell size={20} />
           <span className="coop-notification-dot"></span>
