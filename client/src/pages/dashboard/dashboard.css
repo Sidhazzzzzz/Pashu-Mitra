@@ -330,13 +330,18 @@ body.cooperative-mode {
   flex-direction: row;
   align-items: center;
   gap: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.coop-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
-/* Colored left borders for stat cards */
-.coop-stat-card:nth-child(1) { border-left: 4px solid var(--coop-primary); }
-.coop-stat-card:nth-child(2) { border-left: 4px solid var(--coop-status-amber); }
-.coop-stat-card:nth-child(3) { border-left: 4px solid var(--coop-primary); }
-.coop-stat-card:nth-child(4) { border-left: 4px solid var(--coop-status-green); }
+/* Colored left borders and subtle bg tints for stat cards */
+.coop-stat-card:nth-child(1) { border-left: 4px solid var(--coop-primary); background: linear-gradient(135deg, #f0f7f4 0%, #ffffff 100%); }
+.coop-stat-card:nth-child(2) { border-left: 4px solid var(--coop-status-amber); background: linear-gradient(135deg, #fef8f0 0%, #ffffff 100%); }
+.coop-stat-card:nth-child(3) { border-left: 4px solid var(--coop-primary); background: linear-gradient(135deg, #f0f7f4 0%, #ffffff 100%); }
+.coop-stat-card:nth-child(4) { border-left: 4px solid var(--coop-status-green); background: linear-gradient(135deg, #f4f8f3 0%, #ffffff 100%); }
 
 /* Stat card icon */
 .coop-stat-icon {
@@ -493,18 +498,21 @@ body.cooperative-mode {
 .coop-risk-badge.low::before { background: var(--coop-status-green); }
 
 .coop-btn {
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.15s;
+  transition: all 0.2s ease;
 }
-.coop-btn:hover { opacity: 0.9; }
-.coop-btn-primary { background: var(--coop-primary); color: white; }
+.coop-btn:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.coop-btn-primary { background: linear-gradient(135deg, #1f5a45 0%, #2d7a5e 100%); color: white; }
+.coop-btn-primary:hover { background: linear-gradient(135deg, #174a38 0%, #1f5a45 100%); }
 .coop-btn-outline { background: transparent; border-color: var(--coop-border); color: var(--coop-fg); }
+.coop-btn-outline:hover { background: var(--coop-bg); }
 .coop-btn-danger { background: #fdf0ef; color: var(--coop-status-red); border-color: #f6dcd9; }
+.coop-btn-danger:hover { background: #fce4e2; }
 
 .coop-action-group {
   display: flex;
@@ -513,13 +521,14 @@ body.cooperative-mode {
 
 /* Selected Animal Panel */
 .coop-animal-panel {
-  background: var(--coop-primary);
+  background: linear-gradient(160deg, #1a4f3d 0%, #1f5a45 40%, #245e4a 100%);
   color: white;
   border-radius: 12px;
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-shadow: 0 4px 20px rgba(31, 90, 69, 0.3);
 }
 
 .coop-panel-header h2 {
