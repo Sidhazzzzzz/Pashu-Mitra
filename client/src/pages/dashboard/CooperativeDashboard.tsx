@@ -336,7 +336,7 @@ export function CooperativeDashboard() {
             <p className="coop-subtitle">{selectedCow.farm} &middot; {selectedCow.breed}</p>
           </header>
 
-          <div className="coop-stat-card" style={{borderLeft: `4px solid var(--coop-${selectedCow.risk})`}}>
+          <div className="coop-pitch-card" style={{borderLeft: `4px solid var(--coop-${selectedCow.risk})`}}>
             <h3 style={{fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: 8, margin: 0}}>
               {data.extra.currentStatus}: <span className={`coop-risk-badge ${selectedCow.risk}`}>{selectedCow.risk} Risk</span>
             </h3>
@@ -346,12 +346,12 @@ export function CooperativeDashboard() {
           </div>
           
           <div className="coop-stats-grid" style={{gridTemplateColumns: '1fr 1fr'}}>
-            <div className="coop-stat-card">
+            <div className="coop-pitch-card">
               <h3>{data.dynamicUi.ecLabel || 'Electrical Conductivity'}</h3>
               <div className="coop-stat-value">{selectedCow.sensor.ec}</div>
               <div className="coop-stat-sub">Real Model Input</div>
             </div>
-            <div className="coop-stat-card">
+            <div className="coop-pitch-card">
               <h3>{data.dynamicUi.tempLabel || 'Temperature'}</h3>
               <div className="coop-stat-value">{selectedCow.sensor.temperature}°C</div>
               <div className="coop-stat-sub">Real Model Input</div>
@@ -430,10 +430,10 @@ export function CooperativeDashboard() {
           <p className="coop-subtitle">{data.dynamicUi.profileTitle} &middot; {deskName}</p>
         </header>
         <div style={{ maxWidth: 480, display: 'flex', flexDirection: 'column', gap: 24 }}>
-          <div className="coop-stat-card">
+          <div className="coop-pitch-card">
             <h3>{data.dynamicUi.contactInfo}</h3>
           </div>
-          <div className="coop-stat-card">
+          <div className="coop-pitch-card">
             <h3 style={{fontSize: '1.2rem', color: 'var(--coop-primary)', margin: 0}}>{data.dynamicUi.reviewsCompleted(reviewsDone)}</h3>
             <p style={{margin: '4px 0 0 0', color: '#6c7a6f'}}>Thank you for helping keep the herds healthy.</p>
           </div>
@@ -546,7 +546,7 @@ const renderHowItWorksView = () => {
           
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', alignItems: 'stretch'}}>
             {/* Card 1 */}
-            <div className="coop-stat-card" style={{height: '100%'}}>
+            <div className="coop-pitch-card" style={{height: '100%'}}>
               <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12}}>
                 <div style={{color: 'var(--coop-primary)'}}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
@@ -563,7 +563,7 @@ const renderHowItWorksView = () => {
             </div>
 
             {/* Card 2 */}
-            <div className="coop-stat-card" style={{height: '100%'}}>
+            <div className="coop-pitch-card" style={{height: '100%'}}>
               <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12}}>
                 <div style={{color: '#4a7c82'}}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
@@ -580,7 +580,7 @@ const renderHowItWorksView = () => {
             </div>
 
             {/* Card 3 */}
-            <div className="coop-stat-card" style={{height: '100%'}}>
+            <div className="coop-pitch-card" style={{height: '100%'}}>
               <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12}}>
                 <div style={{color: '#d99c30'}}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -602,28 +602,28 @@ const renderHowItWorksView = () => {
             <p style={{fontSize: '1rem', color: '#6c7a6f', marginBottom: 32}}>{data.extra.howToUseBody}</p>
             
             <div style={{display: 'flex', flexDirection: 'column', gap: 16}}>
-              <div className="coop-stat-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
+              <div className="coop-pitch-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
                 <div style={{background: 'var(--coop-primary)', color: 'white', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold'}}>1</div>
                 <div>
                   <h4 style={{margin: '0 0 4px 0', fontSize: '1.05rem', color: 'var(--coop-fg)'}}>{data.extra.step1Title}</h4>
                   <p style={{margin: 0, color: '#6c7a6f', fontSize: '0.9rem'}}>{data.extra.step1Body}</p>
                 </div>
               </div>
-              <div className="coop-stat-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
+              <div className="coop-pitch-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
                 <div style={{background: 'var(--coop-status-amber)', color: 'white', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold'}}>2</div>
                 <div>
                   <h4 style={{margin: '0 0 4px 0', fontSize: '1.05rem', color: 'var(--coop-fg)'}}>{data.extra.step2Title}</h4>
                   <p style={{margin: 0, color: '#6c7a6f', fontSize: '0.9rem'}}>{data.extra.step2Body}</p>
                 </div>
               </div>
-              <div className="coop-stat-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
+              <div className="coop-pitch-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
                 <div style={{background: 'var(--coop-status-red)', color: 'white', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold'}}>3</div>
                 <div>
                   <h4 style={{margin: '0 0 4px 0', fontSize: '1.05rem', color: 'var(--coop-fg)'}}>{data.extra.step3Title}</h4>
                   <p style={{margin: 0, color: '#6c7a6f', fontSize: '0.9rem'}}>{data.extra.step3Body}</p>
                 </div>
               </div>
-              <div className="coop-stat-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
+              <div className="coop-pitch-card" style={{flexDirection: 'row', alignItems: 'center', gap: 16, padding: '16px 24px'}}>
                 <div style={{background: '#4a7c82', color: 'white', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold'}}>4</div>
                 <div>
                   <h4 style={{margin: '0 0 4px 0', fontSize: '1.05rem', color: 'var(--coop-fg)'}}>{data.extra.step4Title}</h4>
@@ -646,7 +646,7 @@ const renderHowItWorksView = () => {
       </header>
       
       <div style={{ maxWidth: 480 }}>
-        <div className="coop-stat-card" style={{ gap: 16 }}>
+        <div className="coop-pitch-card" style={{ gap: 16 }}>
           <div>
             <h3 style={{marginBottom: 8}}>Display Language & Region</h3>
             <select 

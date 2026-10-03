@@ -1,0 +1,1 @@
+const fs = require('fs'); let code = fs.readFileSync('client/src/pages/dashboard/CooperativeDashboard.tsx', 'utf8'); let i = 0; code = code.replace(/className="coop-stat-card"/g, (match) => { i++; return i <= 4 ? match : 'className="coop-pitch-card"'; }); fs.writeFileSync('client/src/pages/dashboard/CooperativeDashboard.tsx', code);
