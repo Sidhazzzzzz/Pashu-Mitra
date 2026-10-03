@@ -726,3 +726,6 @@ body.cooperative-mode {
 .coop-notification-dot { position: absolute; top: 0; right: 2px; width: 8px; height: 8px; background: #dc4a42; border-radius: 50%; border: 2px solid white; }
 .coop-lang-picker { background: white; border: 1px solid #e8e6df; border-radius: 20px; padding: 6px 16px; display: flex; align-items: center; gap: 8px; }
 .coop-lang-picker select { border: none; background: transparent; outline: none; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: #111812; padding: 4px; }
+body.cooperative-mode {
+  zoom: 0.8;
+}
