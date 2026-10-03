@@ -1,0 +1,25 @@
+
+.coop-main {
+  max-width: 1440px !important;
+}
+
+.coop-content-grid {
+  grid-template-columns: 1fr 400px !important;
+  gap: 40px !important;
+}
+
+.coop-table th {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #7b8a80 !important;
+}
+
+.coop-table td {
+  font-size: 1.05rem !important;
+}
+
+.coop-priority-section {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.03) !important;
+  border-radius: 20px !important;
+}
+

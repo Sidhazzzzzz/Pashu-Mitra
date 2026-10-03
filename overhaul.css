@@ -1,0 +1,174 @@
+/* MASSIVE VISUAL OVERHAUL */
+:root {
+  --coop-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --coop-primary: #184a38; /* Darker, richer green */
+  --coop-bg: #f8f6f0; /* Slightly warmer cream */
+  --coop-sidebar-bg: #ffffff; /* Contrast sidebar */
+}
+
+body.cooperative-mode {
+  letter-spacing: -0.01em;
+}
+
+.coop-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 48px;
+}
+
+.coop-sidebar {
+  background: var(--coop-sidebar-bg);
+  width: 280px;
+  box-shadow: 1px 0 20px rgba(0,0,0,0.02);
+  border-right: none;
+}
+
+.coop-sidebar-logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: transparent;
+  padding: 0;
+}
+
+.coop-sidebar-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #111812;
+}
+
+.coop-sidebar-tagline {
+  font-size: 0.85rem;
+  color: #7b8a80;
+}
+
+.coop-nav-item {
+  padding: 12px 18px;
+  font-size: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2px;
+  color: #5c6a5f;
+  transition: all 0.2s ease;
+}
+
+.coop-nav-item:hover {
+  background: #f3f7f2;
+  color: var(--coop-primary);
+}
+
+.coop-nav-item.active {
+  background: #eaf3ed;
+  color: var(--coop-primary);
+  font-weight: 700;
+}
+
+.coop-header {
+  margin-bottom: 40px;
+}
+
+.coop-title-row h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #111812;
+  margin-bottom: 8px;
+}
+
+.coop-subtitle {
+  font-size: 1.1rem;
+  color: #6c7a6f;
+}
+
+.coop-info-strip {
+  background: #ffffff;
+  border: 1px solid #e1e9e3;
+  border-radius: 16px;
+  padding: 16px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.coop-info-strip > span {
+  font-size: 1rem;
+}
+
+.coop-stats-grid {
+  gap: 20px;
+}
+
+.coop-stat-card {
+  background: #ffffff;
+  border: 1px solid #e8e6df;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.coop-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.coop-stat-icon {
+  margin-bottom: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+
+.coop-stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111812;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.coop-stat-sub {
+  font-size: 0.95rem;
+  color: #7b8a80;
+  margin-top: 4px;
+}
+
+.coop-table th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8c9a8f;
+  padding: 16px;
+  border-bottom: 2px solid #e8e6df;
+}
+
+.coop-table td {
+  padding: 20px 16px;
+  border-bottom: 1px solid #f0efeb;
+  font-size: 0.95rem;
+}
+
+.coop-table tbody tr:hover {
+  background-color: #ffffff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+
+.coop-animal-avatar {
+  width: 44px;
+  height: 44px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Fix Topbar stretching */
+.coop-topbar {
+  justify-content: flex-end;
+  gap: 16px;
+}
+
