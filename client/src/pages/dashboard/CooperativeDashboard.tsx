@@ -347,7 +347,7 @@ export function CooperativeDashboard() {
     
     return (
       <div style={{display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap'}}>
-        <div style={{flex: '1 1 350px', display: 'flex', flexDirection: 'column', gap: 24}}>
+        <div style={{flex: '1 1 500px', display: 'flex', flexDirection: 'column', gap: 24}}>
           <header className="coop-header">
             <button onClick={() => setActiveView('dashboard')} className="coop-btn coop-btn-outline" style={{marginBottom: 16, width: 'fit-content'}}>
               &larr; Back
@@ -434,7 +434,7 @@ export function CooperativeDashboard() {
             </table>
           </section>
         </div>
-        <aside style={{width: 480, flexShrink: 0}}>
+        <aside style={{width: 320, flexShrink: 0}}>
           <AnimalPanel cow={selectedCow} getRiskForecast={data.getRiskForecast} extra={data.extra} dynamicUi={data.dynamicUi} takeReading={data.takeReading} />
         </aside>
       </div>
