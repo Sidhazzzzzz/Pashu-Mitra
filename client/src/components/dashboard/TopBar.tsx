@@ -28,7 +28,7 @@ export function TopBar({ lastSynced, selectedStateName, stateOptions, onStateCha
           >
             {stateOptions.map(opt => (
               <option key={opt.state} value={opt.state}>
-                {opt.languageLabel}
+                {opt.native} • {opt.languageLabel} ({opt.state})
               </option>
             ))}
           </select>
